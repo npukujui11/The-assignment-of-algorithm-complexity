@@ -34,9 +34,17 @@
 
   + **目标定义**：给定一个有向图$\mathbf{G={\{N, E\}}}$，其中$\mathbf{N}$是$\mathbf{G}$的节点集合，$\mathbf{E}$是有向边的集合，每条边都有一个非负长度，也可以定义为权重或成本，这些节点中有一个节点被视为源节点。
   
-  + **问题定义**：确定从原点到每个节点的最小路径长度。Dijkstra算法使用两组节点$\mathbf{S}$和$\mathbf{C}$，集合$\mathbf{S}$包含选定节点的集合以及给定时间每个节点到原始节点的距离。集合$\mathbf{P}$包含所有尚未被选中且距离未知的候选节点。
+  + **问题定义**：确定从原点到每个节点的最小路径长度。Dijkstra算法使用两组节点$\mathbf{S}$和$\mathbf{C}$，集合$\mathbf{S}$包含选定节点的集合以及给定时间每个节点到原始节点的距离。
 
-  + **算法目标**：计算从集合$\mathbf{S}$中的节点"1"到节点“5”的最短路径
+    - 集合$\mathbf{P}$包含所有尚未被选中且距离未知的候选节点。因此节点集合等于选中节点集和未选中节点集的并集，由此推导出不变属性$\mathbf{N=S \cup C}$
+
+    - 在算法的第一步中，集合$\mathbf{S}$只有节点原点，当算法完成时，它包含所有图节点以及每条边的成本。
+
+    - 如果从原点到它的路径中涉及的所有节点都在选定节点集合$\mathbf{S}$ 内，则考虑一个特殊节点。Dijkstra算法维护一个矩阵$\mathbf{D}$，该矩阵在每一步都使用最短特殊路径的长度或权重进行更新集合$\mathbf{S}$ 的每个节点。
+
+     - 当一个新的$\mathbf{v}$节点试图被添加到$\mathbf{S}$时，到$\mathbf{v}$的最短特殊路径也是到所有其他节点的最短路径。算法完成后，所有节点都在$\mathbf{S}$中，矩阵$\mathbf{D}$包含从原点到图中任何其他节点的所有特殊路径，从而解决了最小路径问题。
+     
+  + **算法目标**：计算从集合$\mathbf{S}$中的节点"1"到节点“5”的最短路径；
 
       - **步骤一**：从图$\mathbf{N}$中节点“1”开始；
         <div align=center>
@@ -214,7 +222,7 @@
             <center><p>图22 </p></center>
         </div>
 
-     - **步骤二十三**：结束从节点”6“开始的遍历，将节点”6“移出集合$\mathbf{P}$；
+     - **步骤二十三**：结束从节点"6"开始的遍历，将节点"6"移出集合$\mathbf{P}$；
         <div align=center>
             <img src="picture/Dijkstra_Animation_0001_图层 26.jpg"
             alt="No Picture"
@@ -222,7 +230,7 @@
             <center><p>图23 </p></center>
         </div>
 
-     - **步骤二十四**：从节点”4“开始的遍历，到节点”5“的最短路径为20+6=26，故有20(4)>=20(5)，无需更新向量$\mathabf{S}$。
+     - **步骤二十四**：从节点"4"开始的遍历，到节点"5"的最短路径为20+6=26，故有20(4)>=20(5)，无需更新向量$\mathbf{S}$。
         <div align=center>
             <img src="picture/Dijkstra_Animation_0000_图层 27.jpg"
             alt="No Picture"
@@ -234,13 +242,40 @@
     + 广度优先；
     + 松弛；
 
+##### 伪代码
+
+* Dijkstra算法伪代码为[<sup>[2]</sup>](#refer-anchor-2)：
+
+``` python
+function Dijkstra(L[1..n, 1..n]): matrix [2..n]
+matrix D[2..n]
+{initialization}
+C <- {2, 3, …, n} {S = N \ C exists only implicitly}
+for i ← 2 to n do D[i] ← L[1, i]
+{greedy loop}
+repeat n - 2 times
+    v ← some element of C that minimizes D[v]
+	  C ← C \ {v} {and implicitly S ←  S U {v}}
+	  for each w ∈ C do
+		  D[w] ← min(D[w], D[v] + L[v, w])
+Return D
+```
 
 ##### 算法时间复杂度
 
-* 每次执行主循环时，都会从队列中提取一个顶点。假设图中有$\mathbf{V}$个顶点，则队列可能包含$\mathbf{O(V)}$个顶点。假定优先级队列的堆实现，每个弹出操作都需要$\mathbf{O(logV)}$时间。所以执行主循环本身所需的总时间是$\mathbf{O(VlogV)}$。
+* 初始化需要一个矩阵$L[1..n, 1..n]$，因此需要一个$\mathbf{O(n)}$的时间。
 
-* 此外，我们必须考虑在函数`expand`中花费的时间，它将函数`handle_edge`应用于每个传出边。因为每个顶点只调用一次`expand`，所以每个边只调用一次`handle_edge`。它可能会调用`push(v')`，但在整个执行过程中最多可以有V次这样的调用，因此该`case arm`的总成本最多为$\mathbf{O(VlogV)}$。然而，另一个`case arm`可能被调用$\mathbf{O(E)}$次，并且每次调用 `increase_priority`都需要$\mathbf{O(logV)}$时间来实现堆。
+* `repeat`循环需要遍历C的所有元素，所以总时间为$\mathbf{O(n^2)}$ 
 
+* `each`的循环需要遍历C的所有元素，因此总时间约为$\mathbf{n^2}$，因此，Dijkstra算法的简单实现需要一个运行时是$\mathbf{O(n^2)}$
+
+* 取决于算法的实现，只要边数远小于$\mathbf{n^2}$，如果图是连通的并且在$\mathbf {O(alogn)}$中，我们可以将复杂度提高到$\mathbf{O((a+n)logn)}$，如果图是稠密图的话，则复杂度最高为$\mathbf{O(log \frac{n^2}{logn})}$
+
+#### 其他
+
+***为什么Dijkstra算法对于负权重会失败？***
+
+* Dijkstra算法不适用于具有负距离的图。负距离会导致算法无限循环，必须由专门的算法处理，例如Bellman-Ford算法或 Johnson 算法。
 
 
 ### Reference
@@ -248,3 +283,7 @@
 <div id="refer-anchor-1"></div>
 
 - [1] Dijkstra, E W. “A Note on Two Problems in Connexion with Graphs.” Numerische Mathematik 1, no. 1 (December 1959): 269–71. doi:10.1007/BF01386390.
+
+<div id="refer-anchor-2"></div>
+
+- [2] [quantra-go-algo/Pseudo code.py](https://gist.github.com/quantra-go-algo/27718fa7db7e02cbb3dbc6b5dba2c537#file-pseudo-code-py)
