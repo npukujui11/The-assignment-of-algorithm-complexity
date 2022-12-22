@@ -275,8 +275,25 @@ Return D
 
 ***为什么Dijkstra算法对于负权重会失败？***
 
-* Dijkstra算法不适用于具有负距离的图。负距离会导致算法无限循环，必须由专门的算法处理，例如Bellman-Ford算法或 Johnson 算法。
+* Dijkstra算法不适用于具有负距离的图。负距离会导致算法无限循环，必须由专门的算法处理，例如Bellman-Ford算法或 Johnson 算法[<sup>[3]</sup>](#refer-anchor-3)。
 
+* 
+
+***为什么Dijkstra算法的时间复杂度会存在不同的区别？***
+
+* 在有向简单图中，最多有$\mathbf{V(V-1)}$条边（每个顶点都与其他所有顶点相邻，因此V个顶点中的每一个都有$\mathbf{V-1}$）。在无向简单图中最多有$\mathbf{\frac{V(V-1)}{2}}$，在Dijkstra算法中如果使用最小堆作为优先队列结构的时候，复杂度为$\mathbf{O(V+ElogV)}$或$\mathbf{O((V+E)logV)}$。如果，改为使用斐波那契堆，Dijkstra算法的复杂度为$\mathbf{O(E+VlogV)}$
+
+* 例如，在稠密图${E \sim V^2}$中，最小堆实现为$\mathbf{O(V^2logV)}$，但斐波那契堆实现的复杂度仅为$\mathbf{O(V^2)}$。
+
+* 采用最小堆作为优先队列结构时，其更新堆中的值而不是向堆中添加新边，`insert()`和`pop()`操作都是对数运算。若采用斐波那契堆作为优先队列结构，`insert()`和`pop()`操作为常量运算。
+
+***Dijkstra算法优点是什么？***
+
+* 具有线性时间复杂度，因此可以轻松用于大型问题。
+
+* 其在寻找最短距离时很有用，因此它也用于谷歌地图和计算流量。
+
+* 其在电话网络和地理地图等领域都有其用途。
 
 ### Reference
 
@@ -287,3 +304,5 @@ Return D
 <div id="refer-anchor-2"></div>
 
 - [2] [quantra-go-algo/Pseudo code.py](https://gist.github.com/quantra-go-algo/27718fa7db7e02cbb3dbc6b5dba2c537#file-pseudo-code-py)
+
+- [3] [Why does Dijkstra’s Algorithm fail on negative weights?](https://www.geeksforgeeks.org/why-does-dijkstras-algorithm-fail-on-negative-weights/)
