@@ -275,9 +275,43 @@ Return D
 
 ***为什么Dijkstra算法对于负权重会失效？***
 
-* Dijkstra算法不适用于具有负距离的图。负距离会导致算法无限循环，必须由专门的算法处理，例如Bellman-Ford算法或 Johnson 算法[<sup>[3]</sup>](#refer-anchor-3)。
+* Dijkstra算法不适用于具有负距离的图。负距离会导致算法无限循环，必须由专门的算法处理，例如Bellman-Ford算法或 Johnson 算法[<sup>[3]</sup>](#refer-anchor-3)，其可以在遇到负循环时停止循环。
 
-* 
+* **示例**：考虑具有节点A、B和C的循环有向图，这些节点由具有表示使用该边的成本的权重的边连接[<sup>[4]</sup>](#refer-anchor-4)。以下是图25中提到的权重：
+  + A–>B=5，A–>C=6，C–>B=-3。这里一个权重C->B是负数。
+    <div align=center>
+      <img src="picture/循环有向图_为什么Dijkstra算法在负权重会失败_01.jpg"
+        alt="No Picture"
+        style="zoom:100%"/>
+        <center><p>图25 </p></center>
+    </div>
+  + **任务**：将节点A视为源节点，任务是找到从源节点A到图中存在的所有其他节点（即节点B和C ）的最短距离。
+
+  + 因此，首先在节点A处将距离标记为0（因为从A到A的距离为0），然后将此节点标记为已访问，这意味着它已包含在最短路径中。
+    <div align=center>
+      <img src="picture/循环有向图_为什么Dijkstra算法在负权重会失败_02.jpg"
+        alt="No Picture"
+        style="zoom:100%"/>
+        <center><p>图26 </p></center>
+    </div>
+
+  + 由于开始时，源节点到所有其他节点的距离未知，因此将其初始化为infinity。如果发现任何短于无穷大的距离（这基本上是贪婪的方法），则更新此距离。
+    <div align=center>
+      <img src="picture/循环有向图_为什么Dijkstra算法在负权重会失败_03.jpg"
+        alt="No Picture"
+        style="zoom:100%"/>
+        <center><p>图27 </p></center>
+    </div>
+
+  + 然后，使用连接它与A的边的权重更新从源节点A到B的距离，该权重为5（因为5<无穷大）。以类似的方式，也将之前无穷大的A到C的距离更新为6（因为6<无穷大）。
+
+  + 现在检查距源节点A的最短距离，因为5是A到B的最短距离，因此将节点B标记为“已访问”。
+
+  + 类似地，下一个最短的是6，因此也将节点C标记为已访问。此时，图的所有三个节点都被访问了。
+
+  + 现在最重要的一步出现在这里，因为可以看出，按照这个算法，从A –>B的最短距离是5，但是如果通过节点C的距离是路径A –>C–>B的距离将是3（因为 A–>C=6和C–>B=-3），所以6+(-3)=3。因为3小于5，但是Dijkstra的算法给出的错误答案是5，这不是最短距离。因此，Dijkstra的算法对于否定案例是失败的。
+
+* 由于Dijkstra遵循贪婪方法，一旦节点被标记为已访问，即使存在成本或距离更小的另一条路径，也不能重新考虑该节点。仅当图中存在负权重或边时才会出现此问题[<sup>[5]</sup>](#refer-anchor-5)。
 
 ***为什么Dijkstra算法的时间复杂度会存在不同的区别？***
 
@@ -306,3 +340,8 @@ Return D
 - [2] [quantra-go-algo/Pseudo code.py](https://gist.github.com/quantra-go-algo/27718fa7db7e02cbb3dbc6b5dba2c537#file-pseudo-code-py)
 
 - [3] [Why does Dijkstra’s Algorithm fail on negative weights?](https://www.geeksforgeeks.org/why-does-dijkstras-algorithm-fail-on-negative-weights/)
+
+- [4] [Why doesn’t Dijkstra work with negative weights?](https://pencilprogrammer.com/why-doesnt-dijkstra-work-with-negative-weights/)
+
+- [5] [Why doesn't Dijkstra work with negative weight graphs?](https://www.quora.com/Why-doesnt-Dijkstra-work-with-negative-weight-graphs)
+
