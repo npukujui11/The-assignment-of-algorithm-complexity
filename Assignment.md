@@ -273,7 +273,7 @@ Return D
 
 #### 其他
 
-***为什么Dijkstra算法对于负权重会失败？***
+***为什么Dijkstra算法对于负权重会失效？***
 
 * Dijkstra算法不适用于具有负距离的图。负距离会导致算法无限循环，必须由专门的算法处理，例如Bellman-Ford算法或 Johnson 算法[<sup>[3]</sup>](#refer-anchor-3)。
 
