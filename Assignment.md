@@ -84,7 +84,7 @@
             <img src="picture/Dijkstra_Animation_0026_图层 1.jpg"
             alt="No Picture"
             style="zoom:100%"/>
-            <center><p>图1  </p></center>
+            <center><p>图2  </p></center>
         </div>
 
       - **步骤二**：采用广度优先策略从节点“1”的邻接节点$\mathrm{E}$中遍历最短路径；
@@ -92,7 +92,7 @@
             <img src="picture/Dijkstra_Animation_0025_图层 2.jpg"
             alt="No Picture"
             style="zoom:100%"/>
-            <center><p>图2 </p></center>
+            <center><p>图3 </p></center>
         </div>
 
       - **步骤三**：获取到节点“2”的最短路径7，更新集合$\mathrm{S}$中到节点“2”最短路径长度为7；
@@ -100,7 +100,7 @@
             <img src="picture/Dijkstra_Animation_0024_图层 3.jpg"
             alt="No Picture"
             style="zoom:100%"/>
-            <center><p>图3 </p></center>
+            <center><p>图4 </p></center>
         </div>
 
       - **步骤四**：采用广度优先策略从节点“1”的邻接节点$\mathrm{E}$中遍历最短路径；
@@ -108,7 +108,7 @@
             <img src="picture/Dijkstra_Animation_0023_图层 4.jpg"
             alt="No Picture"
             style="zoom:100%"/>
-            <center><p>图4 </p></center>
+            <center><p>图5 </p></center>
         </div>
 
       - **步骤五**：获取到节点“3”的最短路径9，更新集合$\mathrm{S}$中到节点“3”最短路径长度为9；
@@ -116,7 +116,7 @@
             <img src="picture/Dijkstra_Animation_0022_图层 5.jpg"
             alt="No Picture"
             style="zoom:100%"/>
-            <center><p>图5 </p></center>
+            <center><p>图6 </p></center>
         </div>
 
       - **步骤六**：采用广度优先策略从节点“1”的邻接节点$\mathrm{E}$中遍历最短路径；
@@ -124,7 +124,7 @@
             <img src="picture/Dijkstra_Animation_0021_图层 6.jpg"
             alt="No Picture"
             style="zoom:100%"/>
-            <center><p>图6 </p></center>
+            <center><p>图7 </p></center>
         </div>
 
       - **步骤七**：获取到节点“6”的最短路径14，更新集合$\mathrm{S}$中到节点“6”最短路径长度为14；
@@ -132,7 +132,7 @@
             <img src="picture/Dijkstra_Animation_0020_图层 7.jpg"
             alt="No Picture"
             style="zoom:100%"/>
-            <center><p>图7 </p></center>
+            <center><p>图8 </p></center>
         </div>
 
       - **步骤八**：更新节点集合$\mathrm{S}$，向量值表示到该节点的距离，并把节点一移出集合$\mathrm{P}$；
@@ -140,7 +140,7 @@
             <img src="picture/Dijkstra_Animation_0019_图层 8.jpg"
             alt="No Picture"
             style="zoom:100%"/>
-            <center><p>图8 </p></center>
+            <center><p>图9 </p></center>
         </div>
 
       - **步骤九**：结束节点”1“的遍历，接下来从集合$\mathrm{P}$中选择节点“2”开始遍历；
@@ -148,7 +148,7 @@
             <img src="picture/Dijkstra_Animation_0018_图层 9.jpg"
             alt="No Picture"
             style="zoom:100%"/>
-            <center><p>图9 </p></center>
+            <center><p>图10 </p></center>
         </div>
 
       - **步骤十**：从节点“2”的邻接节点中$\mathrm{E}$遍历到节点“3”，发现到节点“3“的距离7+10=17大于向量$\mathrm{S}$中节点”3“的最短距离9；
@@ -156,7 +156,7 @@
             <img src="picture/Dijkstra_Animation_0017_图层 10.jpg"
             alt="No Picture"
             style="zoom:100%"/>
-            <center><p>图10 </p></center>
+            <center><p>图11 </p></center>
         </div>
 
 
@@ -165,7 +165,7 @@
             <img src="picture/Dijkstra_Animation_0016_图层 11.jpg"
             alt="No Picture"
             style="zoom:100%"/>
-            <center><p>图11 </p></center>
+            <center><p>图12 </p></center>
         </div>
 
 
@@ -174,7 +174,7 @@
             <img src="picture/Dijkstra_Animation_0015_图层 12.jpg"
             alt="No Picture"
             style="zoom:100%"/>
-            <center><p>图12 </p></center>
+            <center><p>图13 </p></center>
         </div>
 
       - **步骤十三**：更新到节点”4“的最短距离7+15=22，更新向量$\mathrm{S}$；
@@ -182,7 +182,7 @@
             <img src="picture/Dijkstra_Animation_0014_图层 13.jpg"
             alt="No Picture"
             style="zoom:100%"/>
-            <center><p>图13 </p></center>
+            <center><p>图14 </p></center>
         </div>
 
       - **步骤十四**：结束从节点”2“开始的遍历，将节点”2“移出集合$\mathrm{P}$；
@@ -190,7 +190,7 @@
             <img src="picture/Dijkstra_Animation_0013_图层 14.jpg"
             alt="No Picture"
             style="zoom:100%"/>
-            <center><p>图14 </p></center>
+            <center><p>图15 </p></center>
         </div>
 
       - **步骤十五**：递归，从节点”1“的$\mathrm{E}$开始广度遍历，从节点”3“开始遍历；
@@ -198,21 +198,21 @@
             <img src="picture/Dijkstra_Animation_0012_图层 15.jpg"
             alt="No Picture"
             style="zoom:100%"/>
-            <center><p>图15 </p></center>
+            <center><p>图16 </p></center>
         </div>
       - **步骤十六**：从节点”3“开始遍历，遍历到节点”4“
         <div align=center>
             <img src="picture/Dijkstra_Animation_0011_图层 16.jpg"
             alt="No Picture"
             style="zoom:100%"/>
-            <center><p>图16 </p></center>
+            <center><p>图17 </p></center>
         </div>
      - **步骤十七**：获得到节点”4“的最短距离9+11=20，小于之前的最短距离22，所以更新到节点”4“的最短距离为20；
         <div align=center>
             <img src="picture/Dijkstra_Animation_0010_图层 17.jpg"
             alt="No Picture"
             style="zoom:100%"/>
-            <center><p>图17 </p></center>
+            <center><p>图18 </p></center>
         </div>
 
      - **步骤十八**：遍历到节点”6“；
@@ -220,7 +220,7 @@
             <img src="picture/Dijkstra_Animation_0008_图层 19.jpg"
             alt="No Picture"
             style="zoom:100%"/>
-            <center><p>图18 </p></center>
+            <center><p>图19 </p></center>
         </div>
 
      - **步骤十九**：获得到节点”6“的最短距离9+2=11，小于之前的最短距离14，所以更新到节点”6“的最短距离为11；
@@ -228,7 +228,7 @@
             <img src="picture/Dijkstra_Animation_0007_图层 20.jpg"
             alt="No Picture"
             style="zoom:100%"/>
-            <center><p>图19 </p></center>
+            <center><p>图20 </p></center>
         </div>
 
      - **步骤二十**：结束从节点”3“开始的遍历，将节点”3“移出集合$\mathrm{P}$；
@@ -236,7 +236,7 @@
             <img src="picture/Dijkstra_Animation_0005_图层 22.jpg"
             alt="No Picture"
             style="zoom:100%"/>
-            <center><p>图20 </p></center>
+            <center><p>图21 </p></center>
         </div>
     
      - **步骤二十一**：从节点”6“开始遍历，获得到节点”5“的最短路径
@@ -244,7 +244,7 @@
             <img src="picture/Dijkstra_Animation_0003_图层 24.jpg"
             alt="No Picture"
             style="zoom:100%"/>
-            <center><p>图21 </p></center>
+            <center><p>图22 </p></center>
         </div>
 
      - **步骤二十二**：到节点”5“的最短路径11+9=20，更新向量$\mathrm{S}$中的到节点”5“的最短距离
@@ -252,7 +252,7 @@
             <img src="picture/Dijkstra_Animation_0002_图层 25.jpg"
             alt="No Picture"
             style="zoom:100%"/>
-            <center><p>图22 </p></center>
+            <center><p>图23 </p></center>
         </div>
 
      - **步骤二十三**：结束从节点"6"开始的遍历，将节点"6"移出集合$\mathrm{P}$；
@@ -260,7 +260,7 @@
             <img src="picture/Dijkstra_Animation_0001_图层 26.jpg"
             alt="No Picture"
             style="zoom:100%"/>
-            <center><p>图23 </p></center>
+            <center><p>图24 </p></center>
         </div>
 
      - **步骤二十四**：从节点"4"开始的遍历，到节点"5"的最短路径为20+6=26，故有20(4)>=20(5)，无需更新向量$\mathrm{S}$。
@@ -268,7 +268,7 @@
             <img src="picture/Dijkstra_Animation_0000_图层 27.jpg"
             alt="No Picture"
             style="zoom:100%"/>
-            <center><p>图24 </p></center>
+            <center><p>图25 </p></center>
         </div>
 
 * **算法思路**：
