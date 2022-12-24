@@ -151,7 +151,7 @@
             <center><p>图9 </p></center>
         </div>
 
-      - **步骤十**：从节点“2”的邻接节点中$\mathrm{E}$遍历到节点“3”，发现到节点“3“的距离7+10=17大于向量S中节点”3“的最短距离9；
+      - **步骤十**：从节点“2”的邻接节点中$\mathrm{E}$遍历到节点“3”，发现到节点“3“的距离7+10=17大于向量$\mathrm{S}$中节点”3“的最短距离9；
         <div align=center>
             <img src="picture/Dijkstra_Animation_0017_图层 10.jpg"
             alt="No Picture"
@@ -306,11 +306,11 @@ Return D
 
 * **从边缘松弛的角度来看待Dijkstra算法时间复杂度**
   
-  + Dijkstra算法最多放松每条边一次，因此总的时间复杂度为O(ElogV)。
+  + Dijkstra算法最多放松每条边一次，因此总的时间复杂度为$\mathrm{O(ElogV)}$。
 
-  + 在平均情况下，我们从最小堆头提取最小值O(V)次，在最坏情况下(稠密图)提取*O(V^2)*次。注意，在这种情况下E = V^2，这意味着它是O(E)。总的来说，平均情况下是O(VlogV)，最差情况下是O(ElogV)。
+  + 在平均情况下，我们从最小堆头提取最小值$\mathrm{O(V)}$次，在最坏情况下(稠密图)提取$\mathrm{O(V^2)}$次。注意，在这种情况下$\mathrm{E = V^2}$，这意味着它是$\mathrm{O(E)}$。总的来说，平均情况下是$\mathrm{O(VlogV)}$，最差情况下是$\mathrm{O(ElogV)}$。
 
-  + 结合(1)和(2)，整体时间复杂度为$$O(VlogV) + O(ElogV) = O((E + V)logV) <= O((E + E)logV) = O(2 * E * logV) = O(ElogV)$$
+  + 结合(1)和(2)，整体时间复杂度为$$\mathrm{O(VlogV) + O(ElogV) = O((E + V)logV) <= O((E + E)logV) = O(2 \times E \times logV) = O(ElogV)}$$
 
 #### 其他
 
@@ -358,7 +358,7 @@ Return D
 
 * 在有向简单图中，最多有$\mathrm{V(V-1)}$条边（每个顶点都与其他所有顶点相邻，因此V个顶点中的每一个都有$\mathrm{V-1}$）。在无向简单图中最多有$\mathrm{\frac{V(V-1)}{2}}$，在Dijkstra算法中如果使用最小堆作为优先队列结构的时候，复杂度为$\mathrm{O(V+ElogV)}$或$\mathrm{O((V+E)logV)}$。如果，改为使用斐波那契堆，Dijkstra算法的复杂度为$\mathrm{O(E+VlogV)}$
 
-* 例如，在稠密图${E \sim V^2}$中，最小堆实现为$\mathrm{O(V^2logV)}$，但斐波那契堆实现的复杂度仅为$\mathrm{O(V^2)}$。
+* 例如，在稠密图$\mathrm{E \sim V^2}$中，最小堆实现为$\mathrm{O(V^2logV)}$，但斐波那契堆实现的复杂度仅为$\mathrm{O(V^2)}$。
 
 * 采用最小堆作为优先队列结构时，其更新堆中的值而不是向堆中添加新边，`insert()`和`pop()`操作都是对数运算。若采用斐波那契堆作为优先队列结构，`insert()`和`pop()`操作为常量运算。
 
