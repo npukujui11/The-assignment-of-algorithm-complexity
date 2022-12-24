@@ -1,10 +1,12 @@
+<font face="Times New Roma">
+
 ### Introduction
 
 #### Dijkstra算法简介
 
 ##### 概述
 
-* Dijkstra算法是一种图搜索算法，旨在寻找图中节点之间的最短路径，也是一种求解单源最短路径问题的贪心算法[<sup>[1]</sup>](#refer-anchor-1)。它解决具有非负边路径成本的图的单源最短路径问题，生成最短路径树。由Edsger Dijkstra 构想。
+* Dijkstra算法是一种图搜索算法，旨在寻找图中节点之间的最短路径，也是一种求解单源最短路径问题的贪心算法[<sup>[1]</sup>](#refer-anchor-1)。它解决具有非负边路径成本的图的单源最短路径问题，生成最短路径树。由Edsger Dijkstra构想。
 
 ##### 算法条件
 
@@ -20,11 +22,11 @@
 
 * **边缘松弛**：例如，一条有向边连接顶点u和顶点v并且从u到v，这意味着这是顶点v的入站边。边缘松弛是为了找出当前考虑的入站边是否有助于从源到顶点v的距离比现在更短。*这个距离是怎么计算的呢？* 一般来说，如果有一条路径从源顶点(起始顶点)到顶点v，经过顶点u，那么从源到v的距离=从源到顶点u的距离+从u到v的距离。
 
-  + 对于顶点u到顶点v的边，如果满足$d[u]+w(u,v)<d[v]$，更新$d[v]$为$d[u]+w(u,v)$
+  + 对于顶点u到顶点v的边，如果满足$\mathrm{d[u]+w(u,v)<d[v]}$，更新$\mathrm{d[v]}$为$\mathrm{d[u]+w(u,v)}$
 
-    - 顶点u和v代表图中的邻居，$d[u]$和$d[v]$分别代表到顶点u和v的到达成本。
+    - 顶点u和v代表图中的邻居，$\mathrm{d[u]}$和$\mathrm{d[v]}$分别代表到顶点u和v的到达成本。
 
-    - $w (u,v)$表示从顶点u到顶点v的边的权重。
+    - $\mathrm{w (u,v)}$表示从顶点u到顶点v的边的权重。
   
   + <div align=center>
       <img src="picture/边缘松弛.webp"
@@ -33,17 +35,17 @@
         <center><p>图1 </p></center>
     </div>
 
-    - 当前已知可以从起始顶点S通过两个顶点到达顶点u并且该路径花费$d[u]$。此外，我们可以从起始顶点$S$通过四个顶点到达顶点v并且该路径花费$d[v]$。
+    - 当前已知可以从起始顶点S通过两个顶点到达顶点u并且该路径花费$\mathrm{d[u]}$。此外，我们可以从起始顶点$\mathrm{S}$通过四个顶点到达顶点v并且该路径花费$\mathrm{d[v]}$。
 
-    - 当$d[u]+w(u,v)<d[v]$ 时，边缘松弛将$d[v]$更新为$d[u]+w(u,v)$。换句话说，它将当前到达顶点$v(d[v])$的到达成本更新为较低的到达成本$(d[u]+w(u,v))$。它更新成本的原因是通过顶点的路径u可以更短，因为通过顶点u的路径的到达成本将低于当前路径的成本。
+    - 当$\mathrm{d[u]+w(u,v)<d[v]}$ 时，边缘松弛将$\mathrm{d[v]}$更新为$\mathrm{d[u]+w(u,v)}$。换句话说，它将当前到达顶点$\mathrm{v(d[v])}$的到达成本更新为较低的到达成本$\mathrm{(d[u]+w(u,v))}$。它更新成本的原因是通过顶点的路径u可以更短，因为通过顶点u的路径的到达成本将低于当前路径的成本。
     
     - **实际上，最短路径问题的算法通过反复使用边缘松弛来解决问题。**
 
 * **顶点松弛**：一般而言最短路径算法会涉及下列内容：
   
-  + 对于一个或多个顶点u，我们需要检查它所有的出站有向边$u->v$，从源到v通过u的路由是否会比已经存在的从源到v的路由更短。所以基本上对于一些顶点u，我们必须松弛它所有的出站边。通过松弛顶点u的所有出站有向边来松弛顶点u。
+  + 对于一个或多个顶点u，我们需要检查它所有的出站有向边$\mathrm{u \rightarrow v}$，从源到v通过u的路由是否会比已经存在的从源到v的路由更短。所以基本上对于一些顶点u，我们必须松弛它所有的出站边。通过松弛顶点u的所有出站有向边来松弛顶点u。
 
-  + 对于假设我们有一个有向图它有n个顶点。顶点被标记为从0到(n - 1)邻接表．`adjacencyList[i]`将给出顶点i的所有出站有向边。我们还有`weight[][]`数组。`weight[i][j]`表示有向边i -> j的权值。
+  + 对于假设我们有一个有向图它有n个顶点。顶点被标记为从0到(n-1)邻接表．`adjacencyList[i]`将给出顶点i的所有出站有向边。我们还有`weight[][]`数组。`weight[i][j]`表示有向边$\mathrm{i \rightarrow j}$的权值。
 
 ##### 算法过程
 
@@ -53,31 +55,31 @@
   
   + 2）标记所有未访问的节点。将初始节点设置为当前节点。创建一组未访问的节点，称为由所有节点组成的未访问集。
 
-  + 3）对于当前节点，考虑其所有未访问的邻居并计算它们的暂定距离。例如，如果当前节点A 的标记距离为6，并且连接它与邻居B的边的长度为 2，则到B（通过 A）的距离将为6+2=8。
+  + 3）对于当前节点，考虑其所有未访问的邻居并计算它们的暂定距离。例如，如果当前节点A的标记距离为6，并且连接它与邻居B的边的长度为2，则到B（通过A）的距离将为6+2=8。
   
   + 4）当我们完成对当前节点的所有邻居的考虑后，将当前节点标记为已访问并将其从未访问集中删除。永远不会再次检查已访问的节点。
   
   + 5）如果目的节点已被标记为已访问（规划两个特定节点之间的路径时）或未访问集中节点之间的最小暂定距离为无穷大（规划完整遍历时；发生在初始节点之间没有连接时）和剩余未访问的节点），然后停止。算法已经完成。
   
-  + 6）选择标记为最小暂定距离的未访问节点，并将其设置为新的“当前节点”，然后返回步骤 3。 
+  + 6）选择标记为最小暂定距离的未访问节点，并将其设置为新的“当前节点”，然后返回步骤3。 
 
-* 下列图显示了使用Dijkstras算法从节点“a”或“1”到节点“b”或“5”的最短路径。访问过的节点将显示为红色。将会看到最短路径是以最小成本 20 遍历节点1、3、6、5。
+* 下列图显示了使用Dijkstras算法从节点“a”或“1”到节点“b”或“5”的最短路径。访问过的节点将显示为红色。将会看到最短路径是以最小成本20遍历节点1、3、6、5。
 
-  + **目标定义**：给定一个有向图$\mathbf{G={\{N, E\}}}$，其中$\mathbf{N}$是$\mathbf{G}$的节点集合，$\mathbf{E}$是有向边的集合，每条边都有一个非负长度，也可以定义为权重或成本，这些节点中有一个节点被视为源节点。
+  + **目标定义**：给定一个有向图$\mathrm{G={\{N, E\}}}$，其中$\mathrm{N}$是$\mathrm{G}$的节点集合，$\mathrm{E}$是有向边的集合，每条边都有一个非负长度，也可以定义为权重或成本，这些节点中有一个节点被视为源节点。
   
-  + **问题定义**：确定从原点到每个节点的最小路径长度。Dijkstra算法使用两组节点$\mathbf{S}$和$\mathbf{C}$，集合$\mathbf{S}$包含选定节点的集合以及给定时间每个节点到原始节点的距离。
+  + **问题定义**：确定从原点到每个节点的最小路径长度。Dijkstra算法使用两组节点$\mathrm{S}$和$\mathrm{C}$，集合$\mathrm{S}$包含选定节点的集合以及给定时间每个节点到原始节点的距离。
 
-    - 集合$\mathbf{P}$包含所有尚未被选中且距离未知的候选节点。因此节点集合等于选中节点集和未选中节点集的并集，由此推导出不变属性$\mathbf{N=S \cup C}$
+    - 集合$\mathrm{P}$包含所有尚未被选中且距离未知的候选节点。因此节点集合等于选中节点集和未选中节点集的并集，由此推导出不变属性$\mathrm{N=S \cup C}$
 
-    - 在算法的第一步中，集合$\mathbf{S}$只有节点原点，当算法完成时，它包含所有图节点以及每条边的成本。
+    - 在算法的第一步中，集合$\mathrm{S}$只有节点原点，当算法完成时，它包含所有图节点以及每条边的成本。
 
-    - 如果从原点到它的路径中涉及的所有节点都在选定节点集合$\mathbf{S}$ 内，则考虑一个特殊节点。Dijkstra算法维护一个矩阵$\mathbf{D}$，该矩阵在每一步都使用最短特殊路径的长度或权重进行更新集合$\mathbf{S}$ 的每个节点。
+    - 如果从原点到它的路径中涉及的所有节点都在选定节点集合$\mathrm{S}$ 内，则考虑一个特殊节点。Dijkstra算法维护一个矩阵$\mathrm{D}$，该矩阵在每一步都使用最短特殊路径的长度或权重进行更新集合$\mathrm{S}$ 的每个节点。
 
-     - 当一个新的$\mathbf{v}$节点试图被添加到$\mathbf{S}$时，到$\mathbf{v}$的最短特殊路径也是到所有其他节点的最短路径。算法完成后，所有节点都在$\mathbf{S}$中，矩阵$\mathbf{D}$包含从原点到图中任何其他节点的所有特殊路径，从而解决了最小路径问题。
+     - 当一个新的$\mathrm{v}$节点试图被添加到$\mathrm{S}$时，到$\mathrm{v}$的最短特殊路径也是到所有其他节点的最短路径。算法完成后，所有节点都在$\mathrm{S}$中，矩阵$\mathrm{D}$包含从原点到图中任何其他节点的所有特殊路径，从而解决了最小路径问题。
      
-  + **算法目标**：计算从集合$\mathbf{S}$中的节点"1"到节点“5”的最短路径；
+  + **算法目标**：计算从集合$\mathrm{S}$中的节点"1"到节点“5”的最短路径；
 
-      - **步骤一**：从图$\mathbf{N}$中节点“1”开始；
+      - **步骤一**：从图$\mathrm{N}$中节点“1”开始；
         <div align=center>
             <img src="picture/Dijkstra_Animation_0026_图层 1.jpg"
             alt="No Picture"
@@ -85,7 +87,7 @@
             <center><p>图1  </p></center>
         </div>
 
-      - **步骤二**：采用广度优先策略从节点“1”的邻接节点$\mathbf{E}$中遍历最短路径；
+      - **步骤二**：采用广度优先策略从节点“1”的邻接节点$\mathrm{E}$中遍历最短路径；
         <div align=center>
             <img src="picture/Dijkstra_Animation_0025_图层 2.jpg"
             alt="No Picture"
@@ -93,7 +95,7 @@
             <center><p>图2 </p></center>
         </div>
 
-      - **步骤三**：获取到节点“2”的最短路径7，更新集合$\mathbf{S}$中到节点“2”最短路径长度为7；
+      - **步骤三**：获取到节点“2”的最短路径7，更新集合$\mathrm{S}$中到节点“2”最短路径长度为7；
         <div align=center>
             <img src="picture/Dijkstra_Animation_0024_图层 3.jpg"
             alt="No Picture"
@@ -101,7 +103,7 @@
             <center><p>图3 </p></center>
         </div>
 
-      - **步骤四**：采用广度优先策略从节点“1”的邻接节点$\mathbf{E}$中遍历最短路径；
+      - **步骤四**：采用广度优先策略从节点“1”的邻接节点$\mathrm{E}$中遍历最短路径；
         <div align=center>
             <img src="picture/Dijkstra_Animation_0023_图层 4.jpg"
             alt="No Picture"
@@ -109,7 +111,7 @@
             <center><p>图4 </p></center>
         </div>
 
-      - **步骤五**：获取到节点“3”的最短路径9，更新集合$\mathbf{S}$中到节点“3”最短路径长度为9；
+      - **步骤五**：获取到节点“3”的最短路径9，更新集合$\mathrm{S}$中到节点“3”最短路径长度为9；
         <div align=center>
             <img src="picture/Dijkstra_Animation_0022_图层 5.jpg"
             alt="No Picture"
@@ -117,7 +119,7 @@
             <center><p>图5 </p></center>
         </div>
 
-      - **步骤六**：采用广度优先策略从节点“1”的邻接节点$\mathbf{E}$中遍历最短路径；
+      - **步骤六**：采用广度优先策略从节点“1”的邻接节点$\mathrm{E}$中遍历最短路径；
         <div align=center>
             <img src="picture/Dijkstra_Animation_0021_图层 6.jpg"
             alt="No Picture"
@@ -125,7 +127,7 @@
             <center><p>图6 </p></center>
         </div>
 
-      - **步骤七**：获取到节点“6”的最短路径14，更新集合$\mathbf{S}$中到节点“6”最短路径长度为14；
+      - **步骤七**：获取到节点“6”的最短路径14，更新集合$\mathrm{S}$中到节点“6”最短路径长度为14；
         <div align=center>
             <img src="picture/Dijkstra_Animation_0020_图层 7.jpg"
             alt="No Picture"
@@ -133,7 +135,7 @@
             <center><p>图7 </p></center>
         </div>
 
-      - **步骤八**：更新节点向量S，向量值表示到该节点的距离，并把节点一移出集合$\mathbf{P}$；
+      - **步骤八**：更新节点集合$\mathrm{S}$，向量值表示到该节点的距离，并把节点一移出集合$\mathrm{P}$；
         <div align=center>
             <img src="picture/Dijkstra_Animation_0019_图层 8.jpg"
             alt="No Picture"
@@ -141,7 +143,7 @@
             <center><p>图8 </p></center>
         </div>
 
-      - **步骤九**：结束节点”1“的遍历，接下来从集合$\mathbf{P}$中选择节点“2”开始遍历；
+      - **步骤九**：结束节点”1“的遍历，接下来从集合$\mathrm{P}$中选择节点“2”开始遍历；
         <div align=center>
             <img src="picture/Dijkstra_Animation_0018_图层 9.jpg"
             alt="No Picture"
@@ -149,7 +151,7 @@
             <center><p>图9 </p></center>
         </div>
 
-      - **步骤十**：从节点“2”的邻接节点中$\mathbf{E}$遍历到节点“3”，发现到节点“3“的距离7+10=17大于向量S中节点”3“的最短距离9；
+      - **步骤十**：从节点“2”的邻接节点中$\mathrm{E}$遍历到节点“3”，发现到节点“3“的距离7+10=17大于向量S中节点”3“的最短距离9；
         <div align=center>
             <img src="picture/Dijkstra_Animation_0017_图层 10.jpg"
             alt="No Picture"
@@ -158,7 +160,7 @@
         </div>
 
 
-      - **步骤十一**：因此在向量$\mathbf{S}$中不更新节点”3“的最短距离；
+      - **步骤十一**：因此在向量$\mathrm{S}$中不更新节点”3“的最短距离；
         <div align=center>
             <img src="picture/Dijkstra_Animation_0016_图层 11.jpg"
             alt="No Picture"
@@ -167,7 +169,7 @@
         </div>
 
 
-      - **步骤十二**：接着从节点”2“的$\mathbf{E}$集合进行遍历，遍历到节点”4“；
+      - **步骤十二**：接着从节点”2“的$\mathrm{E}$集合进行遍历，遍历到节点”4“；
         <div align=center>
             <img src="picture/Dijkstra_Animation_0015_图层 12.jpg"
             alt="No Picture"
@@ -175,7 +177,7 @@
             <center><p>图12 </p></center>
         </div>
 
-      - **步骤十三**：更新到节点”4“的最短距离7+15=22，更新向量$\mathbf{S}$；
+      - **步骤十三**：更新到节点”4“的最短距离7+15=22，更新向量$\mathrm{S}$；
         <div align=center>
             <img src="picture/Dijkstra_Animation_0014_图层 13.jpg"
             alt="No Picture"
@@ -183,7 +185,7 @@
             <center><p>图13 </p></center>
         </div>
 
-      - **步骤十四**：结束从节点”2“开始的遍历，将节点”2“移出集合$\mathbf{P}$；
+      - **步骤十四**：结束从节点”2“开始的遍历，将节点”2“移出集合$\mathrm{P}$；
         <div align=center>
             <img src="picture/Dijkstra_Animation_0013_图层 14.jpg"
             alt="No Picture"
@@ -191,7 +193,7 @@
             <center><p>图14 </p></center>
         </div>
 
-      - **步骤十五**：递归，从节点”1“的$\mathbf{E}$开始广度遍历，从节点”3“开始遍历；
+      - **步骤十五**：递归，从节点”1“的$\mathrm{E}$开始广度遍历，从节点”3“开始遍历；
         <div align=center>
             <img src="picture/Dijkstra_Animation_0012_图层 15.jpg"
             alt="No Picture"
@@ -229,7 +231,7 @@
             <center><p>图19 </p></center>
         </div>
 
-     - **步骤二十**：结束从节点”3“开始的遍历，将节点”3“移出集合$\mathbf{P}$；
+     - **步骤二十**：结束从节点”3“开始的遍历，将节点”3“移出集合$\mathrm{P}$；
         <div align=center>
             <img src="picture/Dijkstra_Animation_0005_图层 22.jpg"
             alt="No Picture"
@@ -245,7 +247,7 @@
             <center><p>图21 </p></center>
         </div>
 
-     - **步骤二十二**：到节点”5“的最短路径11+9=20，更新向量$\mathbf{S}$中的到节点”5“的最短距离
+     - **步骤二十二**：到节点”5“的最短路径11+9=20，更新向量$\mathrm{S}$中的到节点”5“的最短距离
         <div align=center>
             <img src="picture/Dijkstra_Animation_0002_图层 25.jpg"
             alt="No Picture"
@@ -253,7 +255,7 @@
             <center><p>图22 </p></center>
         </div>
 
-     - **步骤二十三**：结束从节点"6"开始的遍历，将节点"6"移出集合$\mathbf{P}$；
+     - **步骤二十三**：结束从节点"6"开始的遍历，将节点"6"移出集合$\mathrm{P}$；
         <div align=center>
             <img src="picture/Dijkstra_Animation_0001_图层 26.jpg"
             alt="No Picture"
@@ -261,7 +263,7 @@
             <center><p>图23 </p></center>
         </div>
 
-     - **步骤二十四**：从节点"4"开始的遍历，到节点"5"的最短路径为20+6=26，故有20(4)>=20(5)，无需更新向量$\mathbf{S}$。
+     - **步骤二十四**：从节点"4"开始的遍历，到节点"5"的最短路径为20+6=26，故有20(4)>=20(5)，无需更新向量$\mathrm{S}$。
         <div align=center>
             <img src="picture/Dijkstra_Animation_0000_图层 27.jpg"
             alt="No Picture"
@@ -275,7 +277,7 @@
 
 ##### 伪代码
 
-* Dijkstra算法伪代码为[<sup>[2]</sup>](#refer-anchor-2)：
+* Dijkstra算法的Python伪代码为[<sup>[2]</sup>](#refer-anchor-2)：
 
 ``` python
 function Dijkstra(L[1..n, 1..n]): matrix [2..n]
@@ -289,18 +291,26 @@ repeat n - 2 times
 	  C ← C \ {v} {and implicitly S ←  S U {v}}
 	  for each w ∈ C do
 		  D[w] ← min(D[w], D[v] + L[v, w])
-Return D
+Return D          
 ```
 
 ##### 算法时间复杂度
 
-* 初始化需要一个矩阵$L[1..n, 1..n]$，因此需要一个$\mathbf{O(n)}$的时间。
+* 初始化需要一个矩阵$L[1..n, 1..n]$，因此需要一个$\mathrm{O(n)}$的时间。
 
-* `repeat`循环需要遍历C的所有元素，所以总时间为$\mathbf{O(n^2)}$ 
+* `repeat`循环需要遍历C的所有元素，所以总时间为$\mathrm{O(n^2)}$ 
 
-* `each`的循环需要遍历C的所有元素，因此总时间约为$\mathbf{n^2}$，因此，Dijkstra算法的简单实现需要一个运行时是$\mathbf{O(n^2)}$
+* `each`的循环需要遍历C的所有元素，因此总时间约为$\mathrm{n^2}$，因此，Dijkstra算法的简单实现需要一个运行时是$\mathrm{O(n^2)}$
 
-* 取决于算法的实现，只要边数远小于$\mathbf{n^2}$，如果图是连通的并且在$\mathbf {O(alogn)}$中，我们可以将复杂度提高到$\mathbf{O((a+n)logn)}$，如果图是稠密图的话，则复杂度最高为$\mathbf{O(log \frac{n^2}{logn})}$
+* 取决于算法的实现，只要边数远小于$\mathrm{n^2}$，如果图是连通的并且在$\mathrm {O(alogn)}$中，我们可以将复杂度提高到$\mathrm{O((a+n)logn)}$，如果图是稠密图的话，则复杂度最高为$\mathrm{O(log \frac{n^2}{logn})}$
+
+* **从边缘松弛的角度来看待Dijkstra算法时间复杂度**
+  
+  + Dijkstra算法最多放松每条边一次，因此总的时间复杂度为O(ElogV)。
+
+  + 在平均情况下，我们从最小堆头提取最小值O(V)次，在最坏情况下(稠密图)提取*O(V^2)*次。注意，在这种情况下E = V^2，这意味着它是O(E)。总的来说，平均情况下是O(VlogV)，最差情况下是O(ElogV)。
+
+  + 结合(1)和(2)，整体时间复杂度为$$O(VlogV) + O(ElogV) = O((E + V)logV) <= O((E + E)logV) = O(2 * E * logV) = O(ElogV)$$
 
 #### 其他
 
@@ -346,13 +356,13 @@ Return D
 
 ***为什么Dijkstra算法的时间复杂度会存在不同的区别？***
 
-* 在有向简单图中，最多有$\mathbf{V(V-1)}$条边（每个顶点都与其他所有顶点相邻，因此V个顶点中的每一个都有$\mathbf{V-1}$）。在无向简单图中最多有$\mathbf{\frac{V(V-1)}{2}}$，在Dijkstra算法中如果使用最小堆作为优先队列结构的时候，复杂度为$\mathbf{O(V+ElogV)}$或$\mathbf{O((V+E)logV)}$。如果，改为使用斐波那契堆，Dijkstra算法的复杂度为$\mathbf{O(E+VlogV)}$
+* 在有向简单图中，最多有$\mathrm{V(V-1)}$条边（每个顶点都与其他所有顶点相邻，因此V个顶点中的每一个都有$\mathrm{V-1}$）。在无向简单图中最多有$\mathrm{\frac{V(V-1)}{2}}$，在Dijkstra算法中如果使用最小堆作为优先队列结构的时候，复杂度为$\mathrm{O(V+ElogV)}$或$\mathrm{O((V+E)logV)}$。如果，改为使用斐波那契堆，Dijkstra算法的复杂度为$\mathrm{O(E+VlogV)}$
 
-* 例如，在稠密图${E \sim V^2}$中，最小堆实现为$\mathbf{O(V^2logV)}$，但斐波那契堆实现的复杂度仅为$\mathbf{O(V^2)}$。
+* 例如，在稠密图${E \sim V^2}$中，最小堆实现为$\mathrm{O(V^2logV)}$，但斐波那契堆实现的复杂度仅为$\mathrm{O(V^2)}$。
 
 * 采用最小堆作为优先队列结构时，其更新堆中的值而不是向堆中添加新边，`insert()`和`pop()`操作都是对数运算。若采用斐波那契堆作为优先队列结构，`insert()`和`pop()`操作为常量运算。
 
-***Dijkstra算法优缺点是什么？***
+***Dijkstra算法优缺点是什么？[<sup>[6]</sup>](#refer-anchor-6)***
 
 * 优点：
   + 具有线性时间复杂度，因此可以轻松用于大型问题。
@@ -366,7 +376,7 @@ Return D
 
   + 算法无法管理锋利的边缘，会产生无环图，最理想的最短路径常常无法找到。
 
-### Reference
+### 参考
 
 <div id="refer-anchor-1"></div>
 
@@ -382,3 +392,7 @@ Return D
 
 - [5] [Why doesn't Dijkstra work with negative weight graphs?](https://www.quora.com/Why-doesnt-Dijkstra-work-with-negative-weight-graphs)
 
+
+- [6] [Introduction To Algorithms](https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-fall-2011/)
+
+</font>
